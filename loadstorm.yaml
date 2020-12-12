@@ -1,0 +1,466 @@
+openapi: 3.0.0
+servers:
+  - url: 'https://loadstorm-v3.uc.r.appspot.com'
+    description: API on Google App Engine
+info:
+  description: 'This is a LoadStorm API server.  You can find out more about LoadStorm at [https://loadstorm.com](https://loadstorm.com).  For this sample, you can use the api key `special-key` to test the authorization filters.'
+  version: 1.0.0
+  title: LoadStorm REST API
+  termsOfService: 'https://loadstorm.com/loadstorm-user-agreement/'
+  contact:
+    email: support@loadstorm.com
+    name: Roger Campbell
+tags:
+  - name: scripts
+    description: Operations accessing scripts
+  - name: admin
+    description: 'Administrative access to data for batch operations, restricted to internal LoadStorm admins'
+  - name: users
+    description: Operations about users and their organizations
+  - name: engines
+    description: Operations for setup and management of load engines
+paths:
+  /accounts:
+    post:
+      tags:
+        - users
+      summary: ''
+      description: 'Create a new account, response includes role for default organization'
+      operationId: createAccount
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Account'
+        description: ''
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+        '400':
+          description: Bad Request
+    parameters: []
+    get:
+      summary: ''
+      operationId: getAccounts
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Account'
+      description: Get a list of accounts (admin only)
+      tags:
+        - admin
+    delete:
+      summary: ''
+      operationId: deleteAccounts
+      responses:
+        '200':
+          description: OK
+      description: Delete a list of accounts (admin only)
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: email-domain
+          description: 'email domain to remove, testing, mail services, etc.'
+      tags:
+        - admin
+  '/accounts/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    get:
+      summary: ''
+      tags:
+        - users
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+      operationId: getAccountsId
+      description: Get this account
+    put:
+      summary: ''
+      operationId: updateAccountsId
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Account'
+      tags:
+        - users
+      description: Update this account
+    delete:
+      summary: ''
+      operationId: deleteAccountsId
+      responses:
+        '200':
+          description: OK
+      description: Delete this account (admin only)
+      tags:
+        - admin
+  /organizations:
+    get:
+      summary: ''
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Organization'
+      operationId: getOrganizations
+      description: Get a list of organizations (admin only)
+      tags:
+        - admin
+    post:
+      summary: ''
+      operationId: createOrganization
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountOrgRole'
+      description: 'Create a new organization, response includes role for creator'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Organization'
+      tags:
+        - users
+  '/organizations/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    get:
+      summary: ''
+      tags:
+        - users
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Organization'
+      operationId: getOrganizationsId
+      description: Get this organization
+    put:
+      summary: ''
+      operationId: updateOrganizationsId
+      responses:
+        '200':
+          description: OK
+      description: Update this organization
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Organization'
+      tags:
+        - users
+    delete:
+      summary: ''
+      operationId: deleteOrganizationsId
+      responses:
+        '200':
+          description: OK
+      description: Delete this organization
+      tags:
+        - users
+  /roles:
+    post:
+      summary: ''
+      operationId: createRoles
+      responses:
+        '200':
+          description: OK
+      description: Create a role
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountOrgRole'
+      tags:
+        - users
+  '/roles/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    get:
+      summary: ''
+      tags:
+        - users
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountOrgRole'
+      operationId: getRolesId
+      description: Get a single role (normally these are returned as arrays with the account or organization)
+    delete:
+      summary: ''
+      operationId: deleteRolesId
+      responses:
+        '200':
+          description: OK
+      description: Delete a role
+      tags:
+        - users
+    put:
+      summary: ''
+      operationId: updateRolesId
+      responses:
+        '200':
+          description: OK
+      description: Update role
+      tags:
+        - users
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountOrgRole'
+  '/accounts/{id}/login':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    put:
+      summary: ''
+      operationId: updateAccountsLogin
+      responses:
+        '200':
+          description: OK
+      description: Update last login by account user
+      tags:
+        - users
+  '/roles/{id}/access':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    put:
+      summary: ''
+      operationId: updateRolesAccess
+      responses:
+        '200':
+          description: OK
+      description: Update last access of role by account user
+      tags:
+        - users
+externalDocs:
+  description: ''
+  url: 'https://loadstorm-v3.uc.r.appspot.com/docs'
+components:
+  schemas:
+    Account:
+      type: object
+      description: 'User account, initiated by Firebase'
+      x-tags:
+        - users
+      title: ''
+      x-examples: {}
+      properties:
+        self:
+          type: string
+          description: Firebase Authentication - User UID
+          example: /account/XXTCn8kccFYNe1V
+        roles:
+          type: array
+          uniqueItems: true
+          items:
+            $ref: '#/components/schemas/AccountOrgRole'
+        firstName:
+          type: string
+          example: John
+          default: unknown
+        lastName:
+          type: string
+          example: Smith
+          default: unknown
+        email:
+          type: string
+          example: jsmith@loadstorm.com
+          format: email
+        createdOn:
+          type: string
+          format: date-time
+        modifiedOn:
+          type: string
+          format: date-time
+        lastLogin:
+          type: string
+          format: date-time
+      required:
+        - self
+        - firstName
+        - lastName
+        - email
+    Organization:
+      type: object
+      x-tags:
+        - users
+      description: Grouping (company or billing unit) for User accounts
+      x-examples: {}
+      title: ''
+      properties:
+        self:
+          type: string
+        roles:
+          type: array
+          uniqueItems: true
+          items:
+            $ref: '#/components/schemas/AccountOrgRole'
+        name:
+          type: string
+          example: International Business Machines
+          default: unknown
+        demo:
+          type: boolean
+          description: Org contains examples for new users to view
+        stateType:
+          type: string
+          enum:
+            - TRIAL
+            - CUSTOMER
+            - SUSPENDED
+          default: TRIAL
+          example: TRIAL
+        subscriptionType:
+          type: string
+          default: NONE
+          enum:
+            - NONE
+            - BASIC
+            - TEAM
+            - ENTERPRISE
+            - CUSTOM
+            - COMPLEMENTARY
+          example: BASIC
+        renewalDate:
+          type: string
+          format: date-time
+        testsAvailable:
+          type: integer
+          default: 0
+          minimum: 0
+        maxVusers:
+          type: integer
+          minimum: 0
+          default: 0
+        extraVusers:
+          type: integer
+          minimum: 0
+          default: 0
+        maxTestMinutes:
+          type: integer
+          default: 0
+          minimum: 0
+        orgDomain:
+          type: string
+          example: loadstorm.com
+          format: hostname
+        testDomains:
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            format: hostname
+        createdOn:
+          type: string
+          format: date-time
+        modifiedOn:
+          type: string
+          format: date-time
+      required:
+        - self
+        - name
+        - demo
+        - stateType
+        - subscriptionType
+        - testsAvailable
+        - maxVusers
+        - extraVusers
+        - maxTestMinutes
+    AccountOrgRole:
+      type: object
+      x-tags:
+        - users
+      description: Role of Account within Organization (many to many relation). These are retrieved either with an account or organization.
+      x-examples: {}
+      properties:
+        self:
+          type: string
+        nameType:
+          type: string
+          default: OWNER
+          example: OWNER
+          enum:
+            - OWNER
+            - MEMBER
+            - VIEWER
+            - SUPPORT
+        accountPath:
+          type: string
+        orgPath:
+          type: string
+        createdOn:
+          type: string
+          format: date-time
+        modifiedOn:
+          type: string
+          format: date-time
+        lastAccessed:
+          type: string
+          format: date-time
+      required:
+        - self
+        - nameType
+        - accountPath
+        - orgPath
+  securitySchemes:
+    firebaseAuth:
+      type: apiKey
+      in: header
+      name: idToken
+  links: {}
+  callbacks: {}
+  responses: {}
+security:
+  - firebaseAuth: []
