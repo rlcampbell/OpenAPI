@@ -66,14 +66,17 @@ paths:
         '200':
           description: OK
       description: Delete a list of accounts (admin only)
-      parameters:
-        - schema:
-            type: string
-          in: query
-          name: email-domain
-          description: 'email domain to remove, testing, mail services, etc.'
+      parameters: []
       tags:
         - admin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+        description: Array of user ids to delete
   '/accounts/{id}':
     parameters:
       - schema:
