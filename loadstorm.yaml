@@ -3,7 +3,7 @@ servers:
   - url: 'https://loadstorm-v3.uc.r.appspot.com'
     description: API on Google App Engine
 info:
-  description: 'This is a LoadStorm API server.  You can find out more about LoadStorm at [https://loadstorm.com](https://loadstorm.com).  For this sample, you can use the api key `special-key` to test the authorization filters.'
+  description: 'This is a LoadStorm API server.  You can find out more about LoadStorm at [https://loadstorm.com](https://loadstorm.com).  For access, you need to login to Firebase (see Postman example), then use the login token as header.'
   version: 1.0.0
   title: LoadStorm REST API
   termsOfService: 'https://loadstorm.com/loadstorm-user-agreement/'
@@ -204,7 +204,7 @@ paths:
       responses:
         '200':
           description: OK
-      description: Create a role
+      description: /roles POST
       requestBody:
         content:
           application/json:
