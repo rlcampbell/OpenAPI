@@ -200,11 +200,11 @@ paths:
   /roles:
     post:
       summary: ''
-      operationId: createRoles
+      operationId: createRole
       responses:
         '200':
           description: OK
-      description: /roles POST
+      description: Create a new role for given user account
       requestBody:
         content:
           application/json:
@@ -212,6 +212,7 @@ paths:
               $ref: '#/components/schemas/AccountOrgRole'
       tags:
         - users
+    parameters: []
   '/roles/{id}':
     parameters:
       - schema:
@@ -439,24 +440,24 @@ components:
             - MEMBER
             - VIEWER
             - SUPPORT
-        accountPath:
+        accountLink:
           type: string
-        orgPath:
+        orgLink:
           type: string
+        lastAccessed:
+          type: string
+          format: date-time
         createdOn:
           type: string
           format: date-time
         modifiedOn:
           type: string
           format: date-time
-        lastAccessed:
-          type: string
-          format: date-time
       required:
         - self
         - nameType
-        - accountPath
-        - orgPath
+        - accountLink
+        - orgLink
   securitySchemes:
     firebaseAuth:
       type: apiKey
