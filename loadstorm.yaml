@@ -132,6 +132,32 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Organization'
+              examples:
+                example-1:
+                  value:
+                    - self: string
+                      roles:
+                        - self: string
+                          nameType: OWNER
+                          accountLink: string
+                          orgLink: string
+                          lastAccessed: '2019-08-24T14:15:22Z'
+                          createdOn: '2019-08-24T14:15:22Z'
+                          modifiedOn: '2019-08-24T14:15:22Z'
+                      name: International Business Machines
+                      demo: true
+                      stateType: TRIAL
+                      subscriptionType: BASIC
+                      renewalDate: '2019-08-24T14:15:22Z'
+                      testsAvailable: 0
+                      maxVusers: 0
+                      extraVusers: 0
+                      maxTestMinutes: 0
+                      orgDomain: loadstorm.com
+                      testDomains:
+                        - example.com
+                      createdOn: '2019-08-24T14:15:22Z'
+                      modifiedOn: '2019-08-24T14:15:22Z'
       operationId: getOrganizations
       description: Get a list of organizations (admin only)
       tags:
@@ -145,13 +171,15 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AccountOrgRole'
+                $ref: '#/components/schemas/Organization'
+              examples: {}
       description: 'Create a new organization, response includes role for creator'
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/Organization'
+            examples: {}
       tags:
         - users
   '/organizations/{id}':
@@ -332,7 +360,6 @@ components:
           type: string
           format: date-time
       required:
-        - self
         - firstName
         - lastName
         - email
@@ -413,7 +440,6 @@ components:
           type: string
           format: date-time
       required:
-        - self
         - name
     AccountOrgRole:
       type: object
@@ -447,7 +473,6 @@ components:
           type: string
           format: date-time
       required:
-        - self
         - nameType
         - accountLink
         - orgLink
