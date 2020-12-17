@@ -415,13 +415,6 @@ components:
       required:
         - self
         - name
-        - demo
-        - stateType
-        - subscriptionType
-        - testsAvailable
-        - maxVusers
-        - extraVusers
-        - maxTestMinutes
     AccountOrgRole:
       type: object
       x-tags:
