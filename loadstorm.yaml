@@ -241,6 +241,15 @@ paths:
       tags:
         - users
     parameters: []
+    get:
+      summary: ''
+      operationId: getRoles
+      responses:
+        '200':
+          description: OK
+      description: Get a list of roles (admin only)
+      tags:
+        - admin
   '/roles/{id}':
     parameters:
       - schema:
