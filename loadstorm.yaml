@@ -25,7 +25,7 @@ paths:
       tags:
         - users
       summary: ''
-      description: 'Create a new account, response includes role for default organization'
+      description: 'Create a new account, response includes role for demo organization'
       operationId: createAccount
       parameters: []
       requestBody:
@@ -349,15 +349,10 @@ components:
             $ref: '#/components/schemas/Role'
         firstName:
           type: string
-          example: John
-          default: unknown
         lastName:
           type: string
-          example: Smith
-          default: unknown
         email:
           type: string
-          example: jsmith@loadstorm.com
           format: email
         isVerified:
           type: boolean
@@ -390,8 +385,6 @@ components:
             $ref: '#/components/schemas/Role'
         name:
           type: string
-          example: International Business Machines
-          default: unknown
         demo:
           type: boolean
           description: Org contains examples for new users to view
@@ -401,11 +394,8 @@ components:
             - TRIAL
             - CUSTOMER
             - SUSPENDED
-          default: TRIAL
-          example: TRIAL
         subscriptionType:
           type: string
-          default: NONE
           enum:
             - NONE
             - BASIC
@@ -413,29 +403,23 @@ components:
             - ENTERPRISE
             - CUSTOM
             - COMPLEMENTARY
-          example: BASIC
         renewalDate:
           type: string
           format: date-time
         testsAvailable:
           type: integer
-          default: 0
           minimum: 0
         maxVusers:
           type: integer
           minimum: 0
-          default: 0
         extraVusers:
           type: integer
           minimum: 0
-          default: 0
         maxTestMinutes:
           type: integer
-          default: 0
           minimum: 0
         orgDomain:
           type: string
-          example: loadstorm.com
           format: hostname
         testDomains:
           type: array
@@ -462,8 +446,6 @@ components:
           type: string
         nameType:
           type: string
-          default: OWNER
-          example: OWNER
           enum:
             - OWNER
             - MEMBER
