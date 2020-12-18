@@ -237,7 +237,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AccountOrgRole'
+              $ref: '#/components/schemas/Role'
       tags:
         - users
     parameters: []
@@ -258,7 +258,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AccountOrgRole'
+                $ref: '#/components/schemas/Role'
       operationId: getRolesId
       description: Get a single role (normally these are returned as arrays with the account or organization)
     delete:
@@ -283,7 +283,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AccountOrgRole'
+              $ref: '#/components/schemas/Role'
   '/accounts/{id}/login':
     parameters:
       - schema:
@@ -337,7 +337,7 @@ components:
           type: array
           uniqueItems: true
           items:
-            $ref: '#/components/schemas/AccountOrgRole'
+            $ref: '#/components/schemas/Role'
         firstName:
           type: string
           example: John
@@ -378,7 +378,7 @@ components:
           type: array
           uniqueItems: true
           items:
-            $ref: '#/components/schemas/AccountOrgRole'
+            $ref: '#/components/schemas/Role'
         name:
           type: string
           example: International Business Machines
@@ -442,7 +442,7 @@ components:
           format: date-time
       required:
         - name
-    AccountOrgRole:
+    Role:
       type: object
       x-tags:
         - users
