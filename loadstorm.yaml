@@ -385,7 +385,7 @@ components:
             $ref: '#/components/schemas/Role'
         name:
           type: string
-        demo:
+        sample:
           type: boolean
           description: Org contains examples for new users to view
         stateType:
