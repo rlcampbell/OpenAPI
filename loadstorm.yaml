@@ -225,74 +225,6 @@ paths:
       description: Delete this organization
       tags:
         - users
-  /roles:
-    post:
-      summary: ''
-      operationId: createRole
-      responses:
-        '200':
-          description: OK
-      description: Create a new role for given user account
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Role'
-      tags:
-        - users
-    parameters: []
-    get:
-      summary: ''
-      operationId: getRoles
-      responses:
-        '200':
-          description: OK
-      description: Get a list of roles (admin only)
-      tags:
-        - admin
-  '/roles/{id}':
-    parameters:
-      - schema:
-          type: string
-        name: id
-        in: path
-        required: true
-    get:
-      summary: ''
-      tags:
-        - users
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Role'
-      operationId: getRolesId
-      description: Get a single role (normally these are returned as arrays with the account or organization)
-    delete:
-      summary: ''
-      operationId: deleteRolesId
-      responses:
-        '200':
-          description: OK
-      description: Delete a role
-      tags:
-        - users
-    put:
-      summary: ''
-      operationId: updateRolesId
-      responses:
-        '200':
-          description: OK
-      description: Update role
-      tags:
-        - users
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Role'
   '/accounts/{id}/login':
     parameters:
       - schema:
@@ -309,20 +241,20 @@ paths:
       description: Update last login by account user
       tags:
         - users
-  '/roles/{id}/access':
+  '/organizations/{id}/invite':
     parameters:
       - schema:
           type: string
         name: id
         in: path
         required: true
-    put:
+    post:
       summary: ''
-      operationId: updateRolesAccess
+      operationId: inviteAccount
       responses:
         '200':
           description: OK
-      description: Update last access of role by account user
+      description: 'Invite user (account) to join the organization. Sends email inviting user to join if they do not have a LoadStorm account, or notifying them that they have been given access if they have an account.'
       tags:
         - users
 externalDocs:
@@ -342,11 +274,6 @@ components:
           type: string
           description: Firebase Authentication - User UID
           example: /account/XXTCn8kccFYNe1V
-        roles:
-          type: array
-          uniqueItems: true
-          items:
-            $ref: '#/components/schemas/Role'
         firstName:
           type: string
         lastName:
@@ -356,6 +283,14 @@ components:
           format: email
         isVerified:
           type: boolean
+        orgsOwner:
+          type: array
+          items:
+            $ref: '#/components/schemas/Organization'
+        orgsMember:
+          type: array
+          items:
+            $ref: '#/components/schemas/Organization'
         lastLogin:
           type: string
           format: date-time
@@ -378,11 +313,6 @@ components:
       properties:
         self:
           type: string
-        roles:
-          type: array
-          uniqueItems: true
-          items:
-            $ref: '#/components/schemas/Role'
         name:
           type: string
         sample:
@@ -427,6 +357,18 @@ components:
           items:
             type: string
             format: hostname
+        owners:
+          type: array
+          items:
+            $ref: '#/components/schemas/Account'
+        members:
+          type: array
+          items:
+            $ref: '#/components/schemas/Account'
+        inviteEmail:
+          type: array
+          items:
+            type: string
         createdOn:
           type: string
           format: date-time
@@ -435,39 +377,6 @@ components:
           format: date-time
       required:
         - name
-    Role:
-      type: object
-      x-tags:
-        - users
-      description: Role of Account within Organization (many to many relation). These are retrieved either with an account or organization.
-      x-examples: {}
-      properties:
-        self:
-          type: string
-        nameType:
-          type: string
-          enum:
-            - OWNER
-            - MEMBER
-            - VIEWER
-            - SUPPORT
-        accountLink:
-          type: string
-        orgLink:
-          type: string
-        lastAccessed:
-          type: string
-          format: date-time
-        createdOn:
-          type: string
-          format: date-time
-        modifiedOn:
-          type: string
-          format: date-time
-      required:
-        - nameType
-        - accountLink
-        - orgLink
   securitySchemes:
     firebaseAuth:
       type: apiKey
