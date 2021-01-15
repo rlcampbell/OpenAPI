@@ -208,7 +208,7 @@ paths:
       responses:
         '200':
           description: OK
-      description: Update this organization
+      description: Update this organization. Must be owner of the organization to call this API.
       requestBody:
         content:
           application/json:
@@ -222,7 +222,7 @@ paths:
       responses:
         '200':
           description: OK
-      description: Delete this organization
+      description: Delete this organization. Must be owner of the organization to call this API.
       tags:
         - users
   '/accounts/{id}/login':
@@ -254,7 +254,7 @@ paths:
       responses:
         '200':
           description: OK
-      description: Invite user (account) to join the organization. Must be owner of organization. Sends email inviting user to join if they do not have a LoadStorm account or notifying them that they have been given access if they have an account.
+      description: Invite user (account) to join the organization. Must be owner of organization to call this API. Sends email inviting user to join if they do not have a LoadStorm account or notifying them that they have been given access if they have an account.
       tags:
         - users
       parameters:
@@ -268,7 +268,7 @@ paths:
       responses:
         '200':
           description: OK
-      description: Remove previously invited user from organization
+      description: Remove previously invited user from organization. Must be owner of organization to call this API.
       parameters:
         - schema:
             type: string
@@ -296,14 +296,14 @@ paths:
             type: string
           in: query
           name: accountID
-      description: Make given account an owner of this organization
+      description: Make given account an owner of this organization. Must be owner of the organization to call this API.
     delete:
       summary: ''
       operationId: deleteOwner
       responses:
         '200':
           description: OK
-      description: Remove given account as owner of this organization
+      description: Remove given account as owner of this organization. Must be owner of the organization to call this API.
       parameters:
         - schema:
             type: string
@@ -331,14 +331,14 @@ paths:
             type: string
           in: query
           name: accountID
-      description: Make given account a member of this organization
+      description: Make given account a member of this organization. Must be owner of the organization to call this API.
     delete:
       summary: ''
       operationId: deleteMember
       responses:
         '200':
           description: OK
-      description: Remove given account as member of this organization
+      description: Remove given account as member of this organization. Must be owner of the organization to call this API.
       parameters:
         - schema:
             type: string
