@@ -254,9 +254,14 @@ paths:
       responses:
         '200':
           description: OK
-      description: 'Invite user (account) to join the organization. Sends email inviting user to join if they do not have a LoadStorm account, or notifying them that they have been given access if they have an account.'
+      description: Invite user (account) to join the organization. Must be owner of organization. Sends email inviting user to join if they do not have a LoadStorm account or notifying them that they have been given access if they have an account.
       tags:
         - users
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: email
 externalDocs:
   description: ''
   url: 'https://loadstorm-v3.uc.r.appspot.com/docs'
