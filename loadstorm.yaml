@@ -250,7 +250,7 @@ paths:
         required: true
     post:
       summary: ''
-      operationId: inviteAccount
+      operationId: inviteUser
       responses:
         '200':
           description: OK
@@ -262,6 +262,90 @@ paths:
             type: string
           in: query
           name: email
+    delete:
+      summary: ''
+      operationId: unInviteUser
+      responses:
+        '200':
+          description: OK
+      description: Remove previously invited user from organization
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: email
+      tags:
+        - users
+  '/organizations/{id}/owner':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    put:
+      summary: ''
+      operationId: addOwner
+      responses:
+        '200':
+          description: OK
+      tags:
+        - users
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: accountID
+      description: Make given account an owner of this organization
+    delete:
+      summary: ''
+      operationId: deleteOwner
+      responses:
+        '200':
+          description: OK
+      description: Remove given account as owner of this organization
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: accountID
+      tags:
+        - users
+  '/organizations/{id}/member':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    put:
+      summary: ''
+      operationId: addMember
+      responses:
+        '200':
+          description: OK
+      tags:
+        - users
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: accountID
+      description: Make given account a member of this organization
+    delete:
+      summary: ''
+      operationId: deleteMember
+      responses:
+        '200':
+          description: OK
+      description: Remove given account as member of this organization
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: accountID
+      tags:
+        - users
 externalDocs:
   description: ''
   url: 'https://loadstorm-v3.uc.r.appspot.com/docs'
