@@ -372,14 +372,6 @@ components:
           format: email
         isVerified:
           type: boolean
-        orgsOwner:
-          type: array
-          items:
-            $ref: '#/components/schemas/Organization'
-        orgsMember:
-          type: array
-          items:
-            $ref: '#/components/schemas/Organization'
         lastLogin:
           type: string
           format: date-time
@@ -389,6 +381,26 @@ components:
         modifiedOn:
           type: string
           format: date-time
+        roles:
+          type: array
+          items:
+            type: object
+            properties:
+              roleName:
+                type: string
+                enum:
+                  - OWNER
+                  - MEMBER
+                  - VIEWER
+                  - SUPPORT
+              lastAccess:
+                type: string
+                format: date-time
+              org:
+                $ref: '#/components/schemas/Organization'
+            required:
+              - roleName
+              - org
       required:
         - firstName
         - lastName
