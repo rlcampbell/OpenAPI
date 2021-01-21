@@ -381,7 +381,7 @@ components:
         modifiedOn:
           type: string
           format: date-time
-        roles:
+        orgs:
           type: array
           items:
             type: object
@@ -458,14 +458,20 @@ components:
           items:
             type: string
             format: hostname
-        owners:
+        accounts:
           type: array
           items:
-            $ref: '#/components/schemas/Account'
-        members:
-          type: array
-          items:
-            $ref: '#/components/schemas/Account'
+            type: object
+            properties:
+              roleName:
+                type: string
+              lastAccess:
+                type: string
+              account:
+                $ref: '#/components/schemas/Account'
+            required:
+              - roleName
+              - account
         inviteEmail:
           type: array
           items:
