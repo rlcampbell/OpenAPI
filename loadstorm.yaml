@@ -396,11 +396,11 @@ components:
               lastAccess:
                 type: string
                 format: date-time
-              org:
-                $ref: '#/components/schemas/Organization'
+              orgID:
+                type: string
             required:
               - roleName
-              - org
+              - orgID
       required:
         - firstName
         - lastName
@@ -458,20 +458,6 @@ components:
           items:
             type: string
             format: hostname
-        accounts:
-          type: array
-          items:
-            type: object
-            properties:
-              roleName:
-                type: string
-              lastAccess:
-                type: string
-              account:
-                $ref: '#/components/schemas/Account'
-            required:
-              - roleName
-              - account
         inviteEmail:
           type: array
           items:
