@@ -32,7 +32,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Account'
+              $ref: '#/components/schemas/AccountInput'
         description: ''
       responses:
         '200':
@@ -107,7 +107,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Account'
+              $ref: '#/components/schemas/AccountInput'
       tags:
         - users
       description: Update this account
@@ -178,8 +178,9 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Organization'
+              $ref: '#/components/schemas/OrganizationInput'
             examples: {}
+        description: ''
       tags:
         - users
   '/organizations/{id}':
@@ -213,7 +214,8 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Organization'
+              $ref: '#/components/schemas/OrganizationInput'
+        description: ''
       tags:
         - users
     delete:
@@ -470,6 +472,46 @@ components:
           format: date-time
       required:
         - name
+    AccountInput:
+      title: AccountInput
+      type: object
+      properties:
+        self:
+          type: string
+          default: new
+        firstName:
+          type: string
+        lastName:
+          type: string
+      required:
+        - self
+        - firstName
+        - lastName
+    OrganizationInput:
+      title: OrganizationInput
+      type: object
+      description: ''
+      properties:
+        self:
+          type: string
+          default: new
+        name:
+          type: string
+        sample:
+          type: boolean
+        orgDomain:
+          type: string
+        testDomains:
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+      required:
+        - self
+        - name
+        - sample
+        - orgDomain
+        - testDomains
   securitySchemes:
     firebaseAuth:
       type: apiKey
