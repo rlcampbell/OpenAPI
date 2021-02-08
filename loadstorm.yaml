@@ -364,7 +364,8 @@ components:
         self:
           type: string
           description: Firebase Authentication - User UID
-          example: /account/XXTCn8kccFYNe1V
+          example: /account/uBeP0QQvuth39jM9gt1mcx9PPoY2
+          readOnly: true
         firstName:
           type: string
         lastName:
@@ -416,6 +417,8 @@ components:
       properties:
         self:
           type: string
+          example: /organizations/Qf7PJkgrf0Xbl6G
+          readOnly: true
         name:
           type: string
         sample:
@@ -475,10 +478,12 @@ components:
     AccountInput:
       title: AccountInput
       type: object
+      description: ''
       properties:
         self:
           type: string
-          default: new
+          default: newAccPath
+          readOnly: true
         firstName:
           type: string
         lastName:
@@ -494,7 +499,8 @@ components:
       properties:
         self:
           type: string
-          default: new
+          default: newOrgPath
+          readOnly: true
         name:
           type: string
         sample:
