@@ -349,7 +349,7 @@ components:
         modifiedOn:
           type: string
           format: date-time
-        orgs:
+        roles:
           type: array
           items:
             type: object
