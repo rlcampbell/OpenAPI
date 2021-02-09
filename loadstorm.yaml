@@ -447,14 +447,12 @@ components:
       properties:
         self:
           type: string
-          default: newAccPath
           readOnly: true
         firstName:
           type: string
         lastName:
           type: string
       required:
-        - self
         - firstName
         - lastName
     OrganizationInput:
@@ -464,7 +462,6 @@ components:
       properties:
         self:
           type: string
-          default: newOrgPath
           readOnly: true
         name:
           type: string
@@ -478,11 +475,7 @@ components:
           items:
             type: string
       required:
-        - self
         - name
-        - sample
-        - orgDomain
-        - testDomains
   securitySchemes:
     firebaseAuth:
       type: apiKey
