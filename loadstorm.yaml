@@ -95,11 +95,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Account'
-      operationId: getAccountById
+      operationId: getAccount
       description: Get this account
     put:
       summary: ''
-      operationId: updateAccountById
+      operationId: updateAccount
       responses:
         '200':
           description: OK
@@ -113,7 +113,7 @@ paths:
       description: Update this account
     delete:
       summary: ''
-      operationId: deleteAccountById
+      operationId: deleteAccount
       responses:
         '200':
           description: OK
@@ -201,11 +201,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Organization'
-      operationId: getOrganizationById
+      operationId: getOrganization
       description: Get this organization
     put:
       summary: ''
-      operationId: updateOrganizationById
+      operationId: updateOrganization
       responses:
         '200':
           description: OK
@@ -220,7 +220,7 @@ paths:
         - users
     delete:
       summary: ''
-      operationId: deleteOrganizationById
+      operationId: deleteOrganization
       responses:
         '200':
           description: OK
