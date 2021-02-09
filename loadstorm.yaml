@@ -313,41 +313,6 @@ paths:
           name: accountID
       tags:
         - users
-  '/organization/{id}/member':
-    parameters:
-      - schema:
-          type: string
-        name: id
-        in: path
-        required: true
-    put:
-      summary: ''
-      operationId: addMember
-      responses:
-        '200':
-          description: OK
-      tags:
-        - users
-      parameters:
-        - schema:
-            type: string
-          in: query
-          name: accountID
-      description: Make given account a member of this organization. Must be owner of the organization to call this API.
-    delete:
-      summary: ''
-      operationId: deleteMember
-      responses:
-        '200':
-          description: OK
-      description: Remove given account as member of this organization. Must be owner of the organization to call this API.
-      parameters:
-        - schema:
-            type: string
-          in: query
-          name: accountID
-      tags:
-        - users
 externalDocs:
   description: ''
   url: 'https://loadstorm-v3.uc.r.appspot.com/docs'
