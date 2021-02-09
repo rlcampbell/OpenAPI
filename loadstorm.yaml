@@ -77,7 +77,7 @@ paths:
               items:
                 type: string
         description: Array of user ids to delete
-  '/accounts/{id}':
+  '/account/{id}':
     parameters:
       - schema:
           type: string
@@ -95,11 +95,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Account'
-      operationId: getAccountsId
+      operationId: getAccountById
       description: Get this account
     put:
       summary: ''
-      operationId: updateAccountsId
+      operationId: updateAccountById
       responses:
         '200':
           description: OK
@@ -113,7 +113,7 @@ paths:
       description: Update this account
     delete:
       summary: ''
-      operationId: deleteAccountsId
+      operationId: deleteAccountById
       responses:
         '200':
           description: OK
@@ -173,7 +173,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Organization'
               examples: {}
-      description: 'Create a new organization, response includes role for creator'
+      description: 'Create a new organization, account record will include role as owner'
       requestBody:
         content:
           application/json:
@@ -183,7 +183,7 @@ paths:
         description: ''
       tags:
         - users
-  '/organizations/{id}':
+  '/organization/{id}':
     parameters:
       - schema:
           type: string
@@ -201,11 +201,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Organization'
-      operationId: getOrganizationsId
+      operationId: getOrganizationById
       description: Get this organization
     put:
       summary: ''
-      operationId: updateOrganizationsId
+      operationId: updateOrganizationById
       responses:
         '200':
           description: OK
@@ -220,14 +220,14 @@ paths:
         - users
     delete:
       summary: ''
-      operationId: deleteOrganizationsId
+      operationId: deleteOrganizationById
       responses:
         '200':
           description: OK
       description: Delete this organization. Must be owner of the organization to call this API.
       tags:
         - users
-  '/accounts/{id}/login':
+  '/account/{id}/login':
     parameters:
       - schema:
           type: string
@@ -236,14 +236,14 @@ paths:
         required: true
     put:
       summary: ''
-      operationId: updateAccountsLogin
+      operationId: loginAccount
       responses:
         '200':
           description: OK
       description: Update last login by account user
       tags:
         - users
-  '/organizations/{id}/invite':
+  '/organization/{id}/invite':
     parameters:
       - schema:
           type: string
@@ -266,7 +266,7 @@ paths:
           name: email
     delete:
       summary: ''
-      operationId: unInviteUser
+      operationId: removeUser
       responses:
         '200':
           description: OK
@@ -278,7 +278,7 @@ paths:
           name: email
       tags:
         - users
-  '/organizations/{id}/owner':
+  '/organization/{id}/owner':
     parameters:
       - schema:
           type: string
@@ -313,7 +313,7 @@ paths:
           name: accountID
       tags:
         - users
-  '/organizations/{id}/member':
+  '/organization/{id}/member':
     parameters:
       - schema:
           type: string
