@@ -313,7 +313,7 @@ paths:
           name: accountID
       tags:
         - users
-  '/accounts/{id}/activationEmail':
+  '/account/{id}/activationEmail':
     parameters:
       - schema:
           type: string
