@@ -343,6 +343,8 @@ paths:
         '200':
           description: OK
       description: Send user email with link to reset their account password
+      tags:
+        - users
 externalDocs:
   description: ''
   url: 'https://loadstorm-v3.uc.r.appspot.com/docs'
@@ -511,6 +513,7 @@ components:
       type: apiKey
       in: header
       name: idToken
+      description: ''
   links: {}
   callbacks: {}
   responses: {}
