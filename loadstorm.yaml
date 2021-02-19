@@ -313,6 +313,22 @@ paths:
           name: accountID
       tags:
         - users
+  '/accounts/{id}/activationEmail':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    put:
+      summary: ''
+      operationId: activationEmail
+      responses:
+        '200':
+          description: OK
+      description: Send activation (verification) email to confirm correct address
+      tags:
+        - users
 externalDocs:
   description: ''
   url: 'https://loadstorm-v3.uc.r.appspot.com/docs'
