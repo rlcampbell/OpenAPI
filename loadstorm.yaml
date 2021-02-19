@@ -329,6 +329,19 @@ paths:
       description: Send activation (verification) email to confirm correct address
       tags:
         - users
+  '/account/{id}/pwResetEmail':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    put:
+      summary: ''
+      operationId: put-account-id-pwResetEmail
+      responses:
+        '200':
+          description: OK
 externalDocs:
   description: ''
   url: 'https://loadstorm-v3.uc.r.appspot.com/docs'
