@@ -338,10 +338,11 @@ paths:
         required: true
     put:
       summary: ''
-      operationId: put-account-id-pwResetEmail
+      operationId: passwordResetEmail
       responses:
         '200':
           description: OK
+      description: Send user email with link to reset their account password
 externalDocs:
   description: ''
   url: 'https://loadstorm-v3.uc.r.appspot.com/docs'
