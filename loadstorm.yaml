@@ -354,7 +354,7 @@ paths:
           description: OK
       tags:
         - admin
-      description: Remove test accounts from Firebase and Datastore
+      description: Remove test accounts (starting with test- and ending with loadstorm.net) from Firebase and Datastore
 externalDocs:
   description: ''
   url: 'https://loadstorm-v3.uc.r.appspot.com/docs'
