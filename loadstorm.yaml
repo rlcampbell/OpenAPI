@@ -345,6 +345,16 @@ paths:
       description: Send user email with link to reset their account password
       tags:
         - users
+  /admin/deleteTestAccounts:
+    delete:
+      summary: ''
+      operationId: deleteTestAccounts
+      responses:
+        '200':
+          description: OK
+      tags:
+        - admin
+      description: Remove test accounts from Firebase and Datastore
 externalDocs:
   description: ''
   url: 'https://loadstorm-v3.uc.r.appspot.com/docs'
@@ -401,9 +411,6 @@ components:
             required:
               - roleName
               - orgID
-      required:
-        - firstName
-        - lastName
     Organization:
       type: object
       x-tags:
@@ -484,9 +491,6 @@ components:
           type: string
         lastName:
           type: string
-      required:
-        - firstName
-        - lastName
     OrganizationInput:
       title: OrganizationInput
       type: object
@@ -506,8 +510,6 @@ components:
           uniqueItems: true
           items:
             type: string
-      required:
-        - name
   securitySchemes:
     firebaseAuth:
       type: apiKey
