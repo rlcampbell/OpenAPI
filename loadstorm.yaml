@@ -43,6 +43,8 @@ paths:
                 $ref: '#/components/schemas/Account'
         '400':
           description: Bad Request
+      security:
+        - firebaseUnverified: []
     parameters: []
     get:
       summary: ''
@@ -329,6 +331,8 @@ paths:
       description: Send activation (verification) email to confirm correct address
       tags:
         - users
+      security:
+        - firebaseUnverified: []
   '/account/{id}/pwResetEmail':
     parameters:
       - schema:
@@ -345,6 +349,8 @@ paths:
       description: Send user email with link to reset their account password
       tags:
         - users
+      security:
+        - firebaseUnverified: []
   /admin/deleteTestAccounts:
     delete:
       summary: ''
@@ -511,11 +517,21 @@ components:
           items:
             type: string
   securitySchemes:
-    firebaseAuth:
+    firebaseUser:
       type: apiKey
       in: header
       name: idToken
-      description: ''
+      description: Authenticated and verified with Firebase
+    firebaseAdmin:
+      type: apiKey
+      in: header
+      name: idToken
+      description: Authenticated and verified with Firebase as loadstorm.com email
+    firebaseUnverified:
+      name: idToken
+      type: apiKey
+      in: header
+      description: Authenticated but email unverified with Firebase
   links: {}
   callbacks: {}
   responses: {}
