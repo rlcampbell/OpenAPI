@@ -536,4 +536,4 @@ components:
   callbacks: {}
   responses: {}
 security:
-  - firebaseAuth: []
+  - firebaseUser: []
